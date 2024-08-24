@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<launch>
+	
+  <arg name="gazebo_gui" default="true"/>
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="extra_gazebo_args" default=""/>
+  <arg name="gui" default="true"/>
+  <arg name="recording" default="false"/>
+  <arg name="world" default="my_world" />
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="physics" default="ode"/>
+  <arg name="verbose" default="false"/>
+  <arg name="world_name" value="$(find erl2)/world/$(arg world).world"/>
+  <arg name="respawn_gazebo" default="false"/>
+  <arg name="use_clock_frequency" default="false"/>
+  <arg name="pub_clock_frequency" default="100"/>
+
+  <!-- set use_sim_time flag -->
+  <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+
+  <!-- set command arguments -->
+  <arg unless="$(arg paused)" name="command_arg1" value=""/>
+  <arg     if="$(arg paused)" name="command_arg1" value="-u"/>
+  <arg unless="$(arg recording)" name="command_arg2" value=""/>
+  <arg     if="$(arg recording)" name="command_arg2" value="-r"/>
+  <arg unless="$(arg verbose)" name="command_arg3" value=""/>
+  <arg     if="$(arg verbose)" name="command_arg3" value="--verbose"/>
+  <arg unless="$(arg debug)" name="script_type" value="gzserver"/>
+  <arg     if="$(arg debug)" name="script_type" value="debug"/>
+
+  <!-- For moveit package -->
+  
+  <!-- By default, we do not start a database (it can be large) -->
+  <arg name="db" default="false" />
+  <!-- Allow user to specify database location -->
+  <arg name="db_path" default="$(find mm)/default_warehouse_mongo_db" />
+
+  <!-- By default, we won't load or override the robot_description -->
+  <arg name="load_robot_description" default="false"/>
+
+  <!--
+  By default, hide joint_state_publisher's GUI
+
+  MoveIt's "demo" mode replaces the real robot driver with the joint_state_publisher.
+  The latter one maintains and publishes the current joint configuration of the simulated robot.
+  It also provides a GUI to move the simulated robot around "manually".
+  This corresponds to moving around the real robot without the use of MoveIt.
+  -->
+  <arg name="use_gui" default="false" />  
+  
+  <!-- ending here -->
+  
+  <!-- start gazebo server-->
+  <group if="$(arg use_clock_frequency)">
+    <param name="gazebo/pub_clock_frequency" value="$(arg pub_clock_frequency)" />
+  </group>
+  <node name="gazebo" pkg="gazebo_ros" type="$(arg script_type)" respawn="$(arg respawn_gazebo)" output="screen"
+	args="$(arg command_arg1) $(arg command_arg2) $(arg command_arg3) -e $(arg physics) $(arg extra_gazebo_args) $(arg world_name)" />
+	
+  <!-- start gazebo client -->
+  <group if="$(arg gui)">
+    <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen"/>
+  </group>
+  
+  <node name="simulation" pkg ="erl2" type="simulation" output="screen" /> 
+ 
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find erl2)/config/sim.rviz" /> 
+  
+  
+  <!-- Adding new stuff here -->
+  <!-- <arg name="urdf_path" default="$(find erl2)/urdf/m2wr_arm2.xacro" /> -->
+  <arg name="urdf_path" default="$(find erl2)/urdf/robot.urdf" />
+
+  
+  <!-- send robot urdf to param server -->
+  <param name="robot_description" textfile="$(arg urdf_path)" />
+
+  <!-- push robot_description to factory and spawn robot in gazebo at the origin, change x,y,z arguments to spawn in a different position -->
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -model robot6 -param robot_description -z 0.05"
+    respawn="false" output="screen" />   
+
+  <include file="$(find mm)/launch/ros_controllers.launch"/>
+
+  <!-- New stuff -->
+
+  <!-- If needed, broadcast static tf for robot root -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_0" args="0 0 0 0 0 0 odom base_link" />
+
+
+  <!-- We do not have a robot connected, so publish fake joint states -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" unless="$(arg use_gui)">
+    <rosparam param="source_list">[move_group/fake_controller_joint_states]</rosparam>
+    <rosparam param="source_list">[/joint_states]</rosparam>
+  </node>
+  <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" if="$(arg use_gui)">
+    <rosparam param="source_list">[move_group/fake_controller_joint_states]</rosparam>
+    <rosparam param="source_list">[/joint_states]</rosparam>
+  </node>
+
+  <!-- Given the published joint states, publish tf for the robot links -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+
+  <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
+  <include file="$(find mm)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="load_robot_description" value="$(arg load_robot_description)"/>
+  </include>
+  
+  <!-- If database loading was enabled, start mongodb as well -->
+  <include file="$(find mm)/launch/default_warehouse_db.launch" if="$(arg db)">
+    <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
+  </include>  
+
+  <!-- ending new stuff -->
+
+  <node name="go_to_point" pkg="motion_plan" type="go_to_point_action.py" respawn="false"/>
+		
+  <!-- arguments -->
+  <arg name="domain_path" default="$(find erl2)/common/domain_turtlebot.pddl" />
+  <arg name="problem_path" default="$(find erl2)/common/problem_turtlebot.pddl" />
+
+  <!-- knowledge base -->
+  <node name="rosplan_knowledge_base" pkg="rosplan_knowledge_base" type="knowledgeBase" respawn="false"
+  output="screen">
+	<param name="domain_path" value="$(arg domain_path)" />
+	<param name="problem_path" value="$(arg problem_path)" />
+	<!-- conditional planning flags -->
+	<param name="use_unknowns" value="false" />
+  </node>
+
+  <!-- problem generation -->
+  <include file="$(find rosplan_planning_system)/launch/includes/problem_interface.launch">
+	<arg name="knowledge_base" value="rosplan_knowledge_base" />
+	<arg name="domain_path" value="$(arg domain_path)" />
+	<arg name="problem_path" value="$(find erl2)/common/new_problem.pddl" />
+	<arg name="problem_topic" value="problem_instance" />
+  </include>
+
+  <!-- plan generation -->
+  <include file="$(find rosplan_planning_system)/launch/includes/planner_interface.launch">
+	<arg name="use_problem_topic" value="true" />
+	<!-- The 'use_problem_topic' parameter, set true, means that the problem passed to the 
+	planner will be the one last published on the problem topic. This links our Planer 
+	Interface to a specific Problem Interface node. -->
+	<arg name="problem_topic" value="/rosplan_problem_interface/problem_instance" />
+	<arg name="planner_topic" value="planner_output" />
+	<arg name="domain_path" value="$(arg domain_path)" />
+	<arg name="data_path" value="$(find erl2)/common/" />
+	<arg name="planner_command" value="timeout 10 $(find rosplan_planning_system)/common/bin/popf
+	DOMAIN PROBLEM" />
+  </include>	
+  
+  <node name="rosplan_parsing_interface" pkg="rosplan_planning_system" type="pddl_simple_plan_parser" respawn="false"
+	output="screen">
+		<param name="knowledge_base" value="rosplan_knowledge_base" />
+		<param name="planner_topic" value="/rosplan_planner_interface/planner_output" />
+		<param name="plan_topic" value="complete_plan" />
+	</node>
+	
+	<node name="rosplan_plan_dispatcher" pkg="rosplan_planning_system" type="pddl_simple_plan_dispatcher" respawn="false"
+	output="screen">
+		<param name="knowledge_base" value="rosplan_knowledge_base" />
+		<param name="plan_topic" value="/rosplan_parsing_interface/complete_plan" />
+		<param name="action_dispatch_topic" value="action_dispatch" />
+		<param name="action_feedback_topic" value="action_feedback" />
+	</node>
+	
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="undock" />
+	</include>
+	
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="dock" />
+	</include>
+	
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="localise" />
+	</include>
+	
+	<node name="rosplan_interface_goto_waypoint" pkg="erl2" type="myaction" respawn="false" output="screen">
+		<param name="knowledge_base" value="rosplan_knowledge_base" />
+		<param name="pddl_action_name" value="goto_waypoint" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+
+</launch>

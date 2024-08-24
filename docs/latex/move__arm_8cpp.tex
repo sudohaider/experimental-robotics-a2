@@ -1,0 +1,94 @@
+\hypertarget{move__arm_8cpp}{}\doxysection{src/move\+\_\+arm.cpp File Reference}
+\label{move__arm_8cpp}\index{src/move\_arm.cpp@{src/move\_arm.cpp}}
+
+
+This files contains code for the \textquotesingle{}move\+\_\+arm\textquotesingle{} node.  
+
+
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$moveit/move\+\_\+group\+\_\+interface/move\+\_\+group\+\_\+interface.\+h$>$}\newline
+{\ttfamily \#include $<$moveit/robot\+\_\+model\+\_\+loader/robot\+\_\+model\+\_\+loader.\+h$>$}\newline
+{\ttfamily \#include $<$moveit/robot\+\_\+model/robot\+\_\+model.\+h$>$}\newline
+{\ttfamily \#include $<$moveit/robot\+\_\+state/robot\+\_\+state.\+h$>$}\newline
+{\ttfamily \#include $<$erl2/\+Move\+Arm.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}std\+\_\+msgs/\+String.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+Include dependency graph for move\+\_\+arm.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{move__arm_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{move__arm_8cpp_a5c011c8e31704ef82a1b1f5b19086900}{move\+\_\+arm}} (erl2\+::\+Move\+Arm\+::\+Request \&req, erl2\+::\+Move\+Arm\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em Callback function for the \textquotesingle{}/request\+\_\+move\+\_\+arm\textquotesingle{} service. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{move__arm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em The main function of the \textquotesingle{}move\+\_\+arm\textquotesingle{} node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This files contains code for the \textquotesingle{}move\+\_\+arm\textquotesingle{} node. 
+
+\begin{DoxyAuthor}{Author}
+Muhammad Ali Haider Dar 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+12/08/2024
+\end{DoxyDate}
+Services \+: ~\newline
+ /request\+\_\+move\+\_\+arm
+
+Description \+:
+
+This node plans and executes the robot\textquotesingle{}s arm movements using the R\+OS Move\+It library. It sets up a service through which a client can request the robot\textquotesingle{}s arm end-\/effector to move to a specified position in the Gazebo simulation. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{move__arm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{move__arm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{move\_arm.cpp@{move\_arm.cpp}!main@{main}}
+\index{main@{main}!move\_arm.cpp@{move\_arm.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+The main function of the \textquotesingle{}move\+\_\+arm\textquotesingle{} node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Integer argument. \\
+\hline
+{\em argv} & Double pointer to a string argument. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Always returns 0, as this function cannot fail.
+\end{DoxyReturn}
+This function initializes the R\+OS node handle and the \textquotesingle{}request\+\_\+move\+\_\+arm\textquotesingle{} service. \mbox{\Hypertarget{move__arm_8cpp_a5c011c8e31704ef82a1b1f5b19086900}\label{move__arm_8cpp_a5c011c8e31704ef82a1b1f5b19086900}} 
+\index{move\_arm.cpp@{move\_arm.cpp}!move\_arm@{move\_arm}}
+\index{move\_arm@{move\_arm}!move\_arm.cpp@{move\_arm.cpp}}
+\doxysubsubsection{\texorpdfstring{move\_arm()}{move\_arm()}}
+{\footnotesize\ttfamily bool move\+\_\+arm (\begin{DoxyParamCaption}\item[{erl2\+::\+Move\+Arm\+::\+Request \&}]{req,  }\item[{erl2\+::\+Move\+Arm\+::\+Response \&}]{res }\end{DoxyParamCaption})}
+
+
+
+Callback function for the \textquotesingle{}/request\+\_\+move\+\_\+arm\textquotesingle{} service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & Request argument for the \textquotesingle{}/request\+\_\+move\+\_\+arm\textquotesingle{} service, of type erl2\+::\+Move\+Arm\+::\+Request. \\
+\hline
+{\em res} & Response argument for the \textquotesingle{}/request\+\_\+move\+\_\+arm\textquotesingle{} service, of type erl2\+::\+Move\+Arm\+::\+Response. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a boolean value.
+\end{DoxyReturn}
+This function handles client requests by planning and executing the robot\textquotesingle{}s arm motion using the R\+OS Move\+It library. 

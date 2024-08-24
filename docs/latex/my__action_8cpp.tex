@@ -1,0 +1,83 @@
+\hypertarget{my__action_8cpp}{}\doxysection{src/my\+\_\+action.cpp File Reference}
+\label{my__action_8cpp}\index{src/my\_action.cpp@{src/my\_action.cpp}}
+
+
+This file contains the implementation for the \textquotesingle{}my\+\_\+action\textquotesingle{} node.  
+
+
+{\ttfamily \#include \char`\"{}erl2/my\+\_\+action.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}erl2/\+Erl\+Oracle.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$erl2/\+Hint\+Collector.\+h$>$}\newline
+{\ttfamily \#include $<$erl2/\+Set\+Orien.\+h$>$}\newline
+{\ttfamily \#include $<$erl2/\+Move\+Arm.\+h$>$}\newline
+{\ttfamily \#include $<$std\+\_\+srvs/\+Empty.\+h$>$}\newline
+{\ttfamily \#include $<$std\+\_\+msgs/\+Float64.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/simple\+\_\+action\+\_\+client.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/terminal\+\_\+state.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}std\+\_\+msgs/\+String.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$motion\+\_\+plan/\+Planning\+Action.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for my\+\_\+action.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{my__action_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{my__action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em The main function of the \textquotesingle{}my\+\_\+action\textquotesingle{} node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation for the \textquotesingle{}my\+\_\+action\textquotesingle{} node. 
+
+\begin{DoxyAuthor}{Author}
+Muhammad Ali Haider Dar 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+12/08/2024
+\end{DoxyDate}
+Services \+: ~\newline
+ /request\+\_\+hint\+\_\+collector /request\+\_\+move\+\_\+arm /request\+\_\+set\+\_\+orientation /rosplan\+\_\+plan\+\_\+dispatcher/cancel\+\_\+dispatch /rosplan\+\_\+knowledge\+\_\+base/update\+\_\+array /request\+\_\+replan
+
+Action Clients / Services \+: ~\newline
+ /reaching\+\_\+goal
+
+Description \+:
+
+This node implements the action client that tasks the robot in the Gazebo simulation to visit all waypoints (wp1, wp2, wp3, wp4). When the robot reaches a waypoint, the node calls the \textquotesingle{}request\+\_\+set\+\_\+orientation\textquotesingle{} service to adjust the robots orientation for optimal arm movement. Once oriented, the robot is instructed to move its arm using the \textquotesingle{}request\+\_\+move\+\_\+arm\textquotesingle{} service and collect hints. If hints are successfully collected, the service returns \textquotesingle{}true\textquotesingle{}, and the robot proceeds to the next waypoint. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{my__action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{my__action_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{my\_action.cpp@{my\_action.cpp}!main@{main}}
+\index{main@{main}!my\_action.cpp@{my\_action.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+The main function of the \textquotesingle{}my\+\_\+action\textquotesingle{} node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Integer argument. \\
+\hline
+{\em argv} & Double pointer to a string argument. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Always returns 0, as this function cannot fail.
+\end{DoxyReturn}
+This function initializes the R\+OS node and the \textquotesingle{}My\+Action\+Interface\textquotesingle{} class under the K\+C\+L\+\_\+rosplan namespace. 

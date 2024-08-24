@@ -1,0 +1,268 @@
+\hypertarget{hint__collector_8cpp}{}\doxysection{src/hint\+\_\+collector.cpp File Reference}
+\label{hint__collector_8cpp}\index{src/hint\_collector.cpp@{src/hint\_collector.cpp}}
+
+
+This file contains the implementation for the \textquotesingle{}hint\+\_\+collector\textquotesingle{} node.  
+
+
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}std\+\_\+msgs/\+String.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$std\+\_\+msgs/\+Float64.\+h$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include \char`\"{}erl2/\+Erl\+Oracle.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}erl2/\+Hint\+Loader.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$std\+\_\+srvs/\+Empty.\+h$>$}\newline
+{\ttfamily \#include $<$erl2/\+Hint\+Collector.\+h$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+Include dependency graph for hint\+\_\+collector.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{hint__collector_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{hint__collector_8cpp_a116c783ff89cc3187ff7380fc5d7efb2}{oracle\+\_\+hint\+\_\+\+Callback}} (const erl2\+::\+Erl\+Oracle\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Callback function for the \textquotesingle{}/oracle\+\_\+hint\textquotesingle{} topic subscriber. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{hint__collector_8cpp_ad4fb83c64f9b46ff3bf267aa1d94f531}{check\+\_\+consistency}} ()
+\begin{DoxyCompactList}\small\item\em Function to check the consistency of all collected hints. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{hint__collector_8cpp_a488b52619a72a4d6be0ac38bea74ef92}{load\+\_\+hint}} ()
+\begin{DoxyCompactList}\small\item\em Function to load the hints into the ontology knowledge base. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{hint__collector_8cpp_ab496005badbb7366995daa9889943aed}{start\+\_\+reasoner}} ()
+\begin{DoxyCompactList}\small\item\em Function to start the ontology reasoner. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{hint__collector_8cpp_aee65fd25524c6196bd6185f71ba3e546}{check\+\_\+completeness}} ()
+\begin{DoxyCompactList}\small\item\em Function to check the completeness of the hypothesis. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{hint__collector_8cpp_a31722364f0fdb52fb7fc74d9f20744e9}{check\+\_\+correctness}} ()
+\begin{DoxyCompactList}\small\item\em Function to check the correctness of the hypothesis based on previously collected hints. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{hint__collector_8cpp_aed0d5cfe1c6263cbf27d86b78610ca6b}{get\+Hint\+Statement}} ()
+\begin{DoxyCompactList}\small\item\em Function to generate a hint statement. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{hint__collector_8cpp_a40d2f6ca722e39a513b5f66c719123ed}{collect\+\_\+hint}} (erl2\+::\+Hint\+Collector\+::\+Request \&req, erl2\+::\+Hint\+Collector\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em Callback function for the \textquotesingle{}request\+\_\+hint\+\_\+collector\textquotesingle{} service. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{hint__collector_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function for the \textquotesingle{}hint\+\_\+collector\textquotesingle{} node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+erl2\+::\+Erl\+Oracle \mbox{\hyperlink{hint__collector_8cpp_a552d32edbc844898a91058f4d74ee5cb}{hint1}}
+\begin{DoxyCompactList}\small\item\em $<$ Global variable used for storing the first hint value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{hint__collector_8cpp_ab8e4fe719a6c2eea425ed234b5f3e251}\label{hint__collector_8cpp_ab8e4fe719a6c2eea425ed234b5f3e251}} 
+erl2\+::\+Erl\+Oracle \mbox{\hyperlink{hint__collector_8cpp_ab8e4fe719a6c2eea425ed234b5f3e251}{hint2}}
+\begin{DoxyCompactList}\small\item\em Global variable used for storing the third hint value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{hint__collector_8cpp_a9fda4b3cb0042e05489dc7e356e4b195}\label{hint__collector_8cpp_a9fda4b3cb0042e05489dc7e356e4b195}} 
+erl2\+::\+Erl\+Oracle \mbox{\hyperlink{hint__collector_8cpp_a9fda4b3cb0042e05489dc7e356e4b195}{hint3}}
+\begin{DoxyCompactList}\small\item\em Client variable for the \textquotesingle{}hint\+\_\+loader\+\_\+service\textquotesingle{} R\+OS service. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{hint__collector_8cpp_a577c02d6dc18f3ee9dd5df79aa2159d5}\label{hint__collector_8cpp_a577c02d6dc18f3ee9dd5df79aa2159d5}} 
+ros\+::\+Service\+Client \mbox{\hyperlink{hint__collector_8cpp_a577c02d6dc18f3ee9dd5df79aa2159d5}{hint\+\_\+loader\+\_\+client}}
+\begin{DoxyCompactList}\small\item\em Global variable to keep track of the total number of hints collected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{hint__collector_8cpp_a7b9bc0202b78c2be5b92d0c1b6ba024b}\label{hint__collector_8cpp_a7b9bc0202b78c2be5b92d0c1b6ba024b}} 
+std\+::int64\+\_\+t {\bfseries count} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation for the \textquotesingle{}hint\+\_\+collector\textquotesingle{} node. 
+
+\begin{DoxyAuthor}{Author}
+Muhammad Ali Haider Dar 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+12/08/2024
+\end{DoxyDate}
+Services\+: ~\newline
+ /request\+\_\+hint\+\_\+collector /hint\+\_\+loader\+\_\+service
+
+Publishers / Subscribers\+: ~\newline
+ /oracle\+\_\+hint
+
+Description \+: This node provides the \textquotesingle{}/request\+\_\+hint\+\_\+collector\textquotesingle{} service, which collects and stores hints from the \textquotesingle{}/oracle\+\_\+hint\textquotesingle{} topic. Once three hints are collected, it checks their consistency and loads them into the \textquotesingle{}A\+R\+M\+OR\textquotesingle{} ontology knowledge base. It then starts the ontology reasoner and verifies if the deduced hypothesis is complete and correct. If the hypothesis is inconsistent, incomplete, or incorrect, it returns \textquotesingle{}false\textquotesingle{}; otherwise, it returns \textquotesingle{}true\textquotesingle{}. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{hint__collector_8cpp_aee65fd25524c6196bd6185f71ba3e546}\label{hint__collector_8cpp_aee65fd25524c6196bd6185f71ba3e546}} 
+\index{hint\_collector.cpp@{hint\_collector.cpp}!check\_completeness@{check\_completeness}}
+\index{check\_completeness@{check\_completeness}!hint\_collector.cpp@{hint\_collector.cpp}}
+\doxysubsubsection{\texorpdfstring{check\_completeness()}{check\_completeness()}}
+{\footnotesize\ttfamily bool check\+\_\+completeness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to check the completeness of the hypothesis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a boolean value; \textquotesingle{}True\textquotesingle{} if the deduced hypothesis is complete.
+\end{DoxyReturn}
+This function determines if the hypothesis, deduced from the previously loaded hints, is complete. \mbox{\Hypertarget{hint__collector_8cpp_ad4fb83c64f9b46ff3bf267aa1d94f531}\label{hint__collector_8cpp_ad4fb83c64f9b46ff3bf267aa1d94f531}} 
+\index{hint\_collector.cpp@{hint\_collector.cpp}!check\_consistency@{check\_consistency}}
+\index{check\_consistency@{check\_consistency}!hint\_collector.cpp@{hint\_collector.cpp}}
+\doxysubsubsection{\texorpdfstring{check\_consistency()}{check\_consistency()}}
+{\footnotesize\ttfamily bool check\+\_\+consistency (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to check the consistency of all collected hints. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a boolean value indicating the result of the consistency check.
+\end{DoxyReturn}
+This function verifies if all three hints have the same I\+Ds and properly filled \textquotesingle{}key\textquotesingle{} and \textquotesingle{}value\textquotesingle{} fields. Hints are considered inconsistent if these conditions are not met. \mbox{\Hypertarget{hint__collector_8cpp_a31722364f0fdb52fb7fc74d9f20744e9}\label{hint__collector_8cpp_a31722364f0fdb52fb7fc74d9f20744e9}} 
+\index{hint\_collector.cpp@{hint\_collector.cpp}!check\_correctness@{check\_correctness}}
+\index{check\_correctness@{check\_correctness}!hint\_collector.cpp@{hint\_collector.cpp}}
+\doxysubsubsection{\texorpdfstring{check\_correctness()}{check\_correctness()}}
+{\footnotesize\ttfamily bool check\+\_\+correctness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to check the correctness of the hypothesis based on previously collected hints. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a boolean value.
+\end{DoxyReturn}
+This function checks if the deduced hypothesis is correct by comparing its ID with the correct hypothesis ID provided by the \textquotesingle{}oracle\+\_\+solution\textquotesingle{} service. \mbox{\Hypertarget{hint__collector_8cpp_a40d2f6ca722e39a513b5f66c719123ed}\label{hint__collector_8cpp_a40d2f6ca722e39a513b5f66c719123ed}} 
+\index{hint\_collector.cpp@{hint\_collector.cpp}!collect\_hint@{collect\_hint}}
+\index{collect\_hint@{collect\_hint}!hint\_collector.cpp@{hint\_collector.cpp}}
+\doxysubsubsection{\texorpdfstring{collect\_hint()}{collect\_hint()}}
+{\footnotesize\ttfamily bool collect\+\_\+hint (\begin{DoxyParamCaption}\item[{erl2\+::\+Hint\+Collector\+::\+Request \&}]{req,  }\item[{erl2\+::\+Hint\+Collector\+::\+Response \&}]{res }\end{DoxyParamCaption})}
+
+
+
+Callback function for the \textquotesingle{}request\+\_\+hint\+\_\+collector\textquotesingle{} service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & Request argument of the \textquotesingle{}request\+\_\+hint\+\_\+collector\textquotesingle{} service, of type erl2\+::\+Hint\+Collector\+::\+Request. \\
+\hline
+{\em res} & Response argument of the \textquotesingle{}request\+\_\+hint\+\_\+collector\textquotesingle{} service, of type erl2\+::\+Hint\+Collector\+::\+Response. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a boolean value.
+\end{DoxyReturn}
+This function responds to client requests by storing the hints. If three hints are successfully collected, it checks their consistency, completeness, and correctness using appropriate functions. \mbox{\Hypertarget{hint__collector_8cpp_aed0d5cfe1c6263cbf27d86b78610ca6b}\label{hint__collector_8cpp_aed0d5cfe1c6263cbf27d86b78610ca6b}} 
+\index{hint\_collector.cpp@{hint\_collector.cpp}!getHintStatement@{getHintStatement}}
+\index{getHintStatement@{getHintStatement}!hint\_collector.cpp@{hint\_collector.cpp}}
+\doxysubsubsection{\texorpdfstring{getHintStatement()}{getHintStatement()}}
+{\footnotesize\ttfamily std\+::string get\+Hint\+Statement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to generate a hint statement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a string containing the hint statement.
+\end{DoxyReturn}
+This function creates a hint statement by concatenating the values of previously collected hints. \mbox{\Hypertarget{hint__collector_8cpp_a488b52619a72a4d6be0ac38bea74ef92}\label{hint__collector_8cpp_a488b52619a72a4d6be0ac38bea74ef92}} 
+\index{hint\_collector.cpp@{hint\_collector.cpp}!load\_hint@{load\_hint}}
+\index{load\_hint@{load\_hint}!hint\_collector.cpp@{hint\_collector.cpp}}
+\doxysubsubsection{\texorpdfstring{load\_hint()}{load\_hint()}}
+{\footnotesize\ttfamily bool load\+\_\+hint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to load the hints into the ontology knowledge base. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a boolean value; \textquotesingle{}True\textquotesingle{} if the hints are successfully loaded into the knowledge base.
+\end{DoxyReturn}
+This function uses the \textquotesingle{}hint\+\_\+loader\+\_\+service\textquotesingle{} service to load the hints into the ontology knowledge base. \mbox{\Hypertarget{hint__collector_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{hint__collector_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{hint\_collector.cpp@{hint\_collector.cpp}!main@{main}}
+\index{main@{main}!hint\_collector.cpp@{hint\_collector.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function for the \textquotesingle{}hint\+\_\+collector\textquotesingle{} node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Integer argument. \\
+\hline
+{\em argv} & Double pointer to a string argument. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Always returns 0, as this function does not fail.
+\end{DoxyReturn}
+This function initializes the R\+OS node, sets up the server for the \textquotesingle{}request\+\_\+hint\+\_\+collector\textquotesingle{} service, and creates a client for the \textquotesingle{}hint\+\_\+loader\+\_\+service\textquotesingle{} service. \mbox{\Hypertarget{hint__collector_8cpp_a116c783ff89cc3187ff7380fc5d7efb2}\label{hint__collector_8cpp_a116c783ff89cc3187ff7380fc5d7efb2}} 
+\index{hint\_collector.cpp@{hint\_collector.cpp}!oracle\_hint\_Callback@{oracle\_hint\_Callback}}
+\index{oracle\_hint\_Callback@{oracle\_hint\_Callback}!hint\_collector.cpp@{hint\_collector.cpp}}
+\doxysubsubsection{\texorpdfstring{oracle\_hint\_Callback()}{oracle\_hint\_Callback()}}
+{\footnotesize\ttfamily void oracle\+\_\+hint\+\_\+\+Callback (\begin{DoxyParamCaption}\item[{const erl2\+::\+Erl\+Oracle\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Callback function for the \textquotesingle{}/oracle\+\_\+hint\textquotesingle{} topic subscriber. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message of type \textquotesingle{}erl2\+::\+Erl\+Oracle\textquotesingle{}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None (void function).
+\end{DoxyReturn}
+This function stores hints published to the \textquotesingle{}/oracle\+\_\+hint\textquotesingle{} topic in global variables. \mbox{\Hypertarget{hint__collector_8cpp_ab496005badbb7366995daa9889943aed}\label{hint__collector_8cpp_ab496005badbb7366995daa9889943aed}} 
+\index{hint\_collector.cpp@{hint\_collector.cpp}!start\_reasoner@{start\_reasoner}}
+\index{start\_reasoner@{start\_reasoner}!hint\_collector.cpp@{hint\_collector.cpp}}
+\doxysubsubsection{\texorpdfstring{start\_reasoner()}{start\_reasoner()}}
+{\footnotesize\ttfamily bool start\+\_\+reasoner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to start the ontology reasoner. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a boolean value; \textquotesingle{}True\textquotesingle{} if the A\+R\+M\+OR reasoner starts successfully.
+\end{DoxyReturn}
+This function uses the \textquotesingle{}hint\+\_\+loader\+\_\+service\textquotesingle{} service to start the A\+R\+M\+OR reasoner. 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{hint__collector_8cpp_a552d32edbc844898a91058f4d74ee5cb}\label{hint__collector_8cpp_a552d32edbc844898a91058f4d74ee5cb}} 
+\index{hint\_collector.cpp@{hint\_collector.cpp}!hint1@{hint1}}
+\index{hint1@{hint1}!hint\_collector.cpp@{hint\_collector.cpp}}
+\doxysubsubsection{\texorpdfstring{hint1}{hint1}}
+{\footnotesize\ttfamily erl2\+::\+Erl\+Oracle hint1}
+
+
+
+$<$ Global variable used for storing the first hint value. 
+
+Global variable used for storing the second hint value. 

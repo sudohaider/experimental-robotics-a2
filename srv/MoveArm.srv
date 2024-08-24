@@ -1,0 +1,4 @@
+string wp
+geometry_msgs/Pose pose
+---
+bool res

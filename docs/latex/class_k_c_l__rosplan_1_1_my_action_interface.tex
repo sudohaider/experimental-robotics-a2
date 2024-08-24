@@ -1,0 +1,97 @@
+\hypertarget{class_k_c_l__rosplan_1_1_my_action_interface}{}\doxysection{K\+C\+L\+\_\+rosplan\+::My\+Action\+Interface Class Reference}
+\label{class_k_c_l__rosplan_1_1_my_action_interface}\index{KCL\_rosplan::MyActionInterface@{KCL\_rosplan::MyActionInterface}}
+
+
+Inheritance diagram for K\+C\+L\+\_\+rosplan\+::My\+Action\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=251pt]{class_k_c_l__rosplan_1_1_my_action_interface__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for K\+C\+L\+\_\+rosplan\+::My\+Action\+Interface\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=251pt]{class_k_c_l__rosplan_1_1_my_action_interface__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_k_c_l__rosplan_1_1_my_action_interface_a51ce261a38c4c6384ed47783aa75e0c0}{My\+Action\+Interface}} (ros\+::\+Node\+Handle \&nh)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{class_k_c_l__rosplan_1_1_my_action_interface}{My\+Action\+Interface}} class within the K\+C\+L\+\_\+rosplan namespace. This class inherits from the R\+P\+Action\+Interface class. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_k_c_l__rosplan_1_1_my_action_interface_ada178916d8b7a9ffd6ed714f372ee327}{concrete\+Callback}} (const rosplan\+\_\+dispatch\+\_\+msgs\+::\+Action\+Dispatch\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Callback function for the \mbox{\hyperlink{class_k_c_l__rosplan_1_1_my_action_interface}{My\+Action\+Interface}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_k_c_l__rosplan_1_1_my_action_interface_ae90cfd4970c0be72e396181cd1910d2b}{update\+KB}} (const std\+::string \&req)
+\begin{DoxyCompactList}\small\item\em Function to update the knowledge in the R\+O\+S\+Plan Knowledge Base (KB). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_k_c_l__rosplan_1_1_my_action_interface_a51ce261a38c4c6384ed47783aa75e0c0}\label{class_k_c_l__rosplan_1_1_my_action_interface_a51ce261a38c4c6384ed47783aa75e0c0}} 
+\index{KCL\_rosplan::MyActionInterface@{KCL\_rosplan::MyActionInterface}!MyActionInterface@{MyActionInterface}}
+\index{MyActionInterface@{MyActionInterface}!KCL\_rosplan::MyActionInterface@{KCL\_rosplan::MyActionInterface}}
+\doxysubsubsection{\texorpdfstring{MyActionInterface()}{MyActionInterface()}}
+{\footnotesize\ttfamily K\+C\+L\+\_\+rosplan\+::\+My\+Action\+Interface\+::\+My\+Action\+Interface (\begin{DoxyParamCaption}\item[{ros\+::\+Node\+Handle \&}]{nh }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{class_k_c_l__rosplan_1_1_my_action_interface}{My\+Action\+Interface}} class within the K\+C\+L\+\_\+rosplan namespace. This class inherits from the R\+P\+Action\+Interface class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nh} & A R\+OS node handle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+The constructor initializes another R\+OS node handle within the K\+C\+L\+\_\+rosplan namespace and the \mbox{\hyperlink{class_k_c_l__rosplan_1_1_my_action_interface}{My\+Action\+Interface}} class. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_k_c_l__rosplan_1_1_my_action_interface_ada178916d8b7a9ffd6ed714f372ee327}\label{class_k_c_l__rosplan_1_1_my_action_interface_ada178916d8b7a9ffd6ed714f372ee327}} 
+\index{KCL\_rosplan::MyActionInterface@{KCL\_rosplan::MyActionInterface}!concreteCallback@{concreteCallback}}
+\index{concreteCallback@{concreteCallback}!KCL\_rosplan::MyActionInterface@{KCL\_rosplan::MyActionInterface}}
+\doxysubsubsection{\texorpdfstring{concreteCallback()}{concreteCallback()}}
+{\footnotesize\ttfamily bool K\+C\+L\+\_\+rosplan\+::\+My\+Action\+Interface\+::concrete\+Callback (\begin{DoxyParamCaption}\item[{const rosplan\+\_\+dispatch\+\_\+msgs\+::\+Action\+Dispatch\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Callback function for the \mbox{\hyperlink{class_k_c_l__rosplan_1_1_my_action_interface}{My\+Action\+Interface}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The task argument of type \textquotesingle{}rosplan\+\_\+dispatch\+\_\+msgs\+::\+Action\+Dispatch\textquotesingle{}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a boolean value based on the outcome of the task assigned to the action server.
+\end{DoxyReturn}
+This function serves as a callback for the \textquotesingle{}goto\+\_\+waypoint\textquotesingle{} action in the P\+D\+DL domain file. During plan dispatch, it is triggered by the \textquotesingle{}goto\+\_\+waypoint\textquotesingle{} action. It includes the low-\/level control logic for the \textquotesingle{}goto\+\_\+waypoint\textquotesingle{} action, which moves the robot in the Gazebo simulation from one waypoint to another using an action service. Once the robot reaches the desired waypoint, it calls the \textquotesingle{}request\+\_\+set\+\_\+orientation\textquotesingle{} and \textquotesingle{}request\+\_\+move\+\_\+arm\textquotesingle{} services to collect hints. \mbox{\Hypertarget{class_k_c_l__rosplan_1_1_my_action_interface_ae90cfd4970c0be72e396181cd1910d2b}\label{class_k_c_l__rosplan_1_1_my_action_interface_ae90cfd4970c0be72e396181cd1910d2b}} 
+\index{KCL\_rosplan::MyActionInterface@{KCL\_rosplan::MyActionInterface}!updateKB@{updateKB}}
+\index{updateKB@{updateKB}!KCL\_rosplan::MyActionInterface@{KCL\_rosplan::MyActionInterface}}
+\doxysubsubsection{\texorpdfstring{updateKB()}{updateKB()}}
+{\footnotesize\ttfamily void K\+C\+L\+\_\+rosplan\+::\+My\+Action\+Interface\+::update\+KB (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{req }\end{DoxyParamCaption})}
+
+
+
+Function to update the knowledge in the R\+O\+S\+Plan Knowledge Base (KB). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & A string argument indicating the type of update needed in the KB. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None (void function).
+\end{DoxyReturn}
+This function updates the knowledge in the R\+O\+S\+Plan KB under two conditions. First, if the robot collects hints that are inconsistent, incomplete, or incorrect, the knowledge about the visited waypoints is removed from the KB. This allows the robot to revisit all waypoints after replanning to gather new hints. Second, if the robot collects hints that are consistent, complete, and correct, all waypoints are marked as visited, so the robot can proceed directly to wp0 to display the hint statement. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/erl2/my\+\_\+action.\+h\item 
+src/\mbox{\hyperlink{my__action_8cpp}{my\+\_\+action.\+cpp}}\end{DoxyCompactItemize}

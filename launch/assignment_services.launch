@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <node pkg="erl2" type="hintcollector" name="hintcollector" output="screen" />
+    <node pkg="erl2" type="move_arm" name="move_arm" />
+    <node pkg="erl2" type="set_orientation.py" name="set_orientation_server"/>
+    <node pkg="erl2" type="replan" name="replan" output="screen"/>
+    <node pkg="erl2" type="replan_sub" name="replan_sub" output="screen"/>
+    <node pkg="erl2" type="hint_loader.py" name="hint_loader" output="screen"/>
+    
+</launch>
