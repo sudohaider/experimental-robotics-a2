@@ -15,7 +15,7 @@ Building upon this architecture, the project features upgrades in both environme
 
 ### Environment Details
 
-The simulation also includes small walls, visible in the picture above. These walls prevent the robot from reaching the points with its mobile base, so the robot must plan its arm motion to place it over the point coordinates to collect hints.
+The simulation also includes small walls which prevent the robot from reaching the points with its mobile base, so the robot must plan its arm motion to place it over the point coordinates to collect hints.
 
 ### Hint Types and Hypothesis
 
