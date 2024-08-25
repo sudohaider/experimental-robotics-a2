@@ -36,7 +36,7 @@ Additionally, we use ROSPlan to plan the robot's behavior. ROSPlan is a framewor
 
 At the start of the simulation, we execute the ROSPlan planning loop services, which include problem generation, planning, parsing, and dispatching. During execution, the robot may fail to complete the goals on the first attempt. The project architecture is designed to detect such failures and trigger replanning. After replanning, the robot executes the new plan and continues this process until all goals are achieved.
 
-### Installation
+## Installation
 
 1. Ensure ROS, ARMOR, and ROSPlan are installed:
    - **ARMOR**: [Installation Guide](https://github.com/EmaroLab/armor)
@@ -55,7 +55,7 @@ At the start of the simulation, we execute the ROSPlan planning loop services, w
     ```
 5. Download the `cluedo_ontology.owl` file from this repository and place it in your `/root/Desktop/` directory.
 
-### Running the Project Simulation
+## Running the Project Simulation
 
 1. Start the ROS master by opening a command window and executing:
     ```bash
@@ -78,7 +78,7 @@ At the start of the simulation, we execute the ROSPlan planning loop services, w
     rosrun erl2 rosplan_start.sh
     ```
 
-### Software Architecture
+## Software Architecture
 
 The project architecture consists of the following main nodes:
 
@@ -110,6 +110,6 @@ The project architecture consists of the following main nodes:
 8. **set_orientation.py**
    - Receives desired orientation coordinates from the `/request_set_orientation` service and computes the required angular velocity for the robot to achieve the desired orientation. Publishes this velocity to the `cmd_vel` topic.
 
-### Code Documentation
+## Code Documentation
 
 Code documentation is provided using the Doxygen tool. You can find the Doxygen documentation in the **main** branch.
