@@ -11,7 +11,7 @@
 
 This project extends the work done in Assignment 1 of the Experimental Robotics course, which can be found [here](https://github.com/alihaidersays/experimental-robotics-a1). In the previous project, a ROS package was developed for a simulation of the Cluedo game, where a robot explored the environment to collect hints and deduced a hypothesis about who might be the killer.
 
-Building upon this architectural theme, the project features upgrades in both environment simulation and task-motion planning. We have developed a scene in the Gazebo simulator, which includes a custom-made robot model with an arm attached to its base. The environment contains four hovering points with coordinates (-3,0), (3,0), (0,-3), (0,3) for the 'x' and 'y' axes. The 'z' coordinate can be either 0.75 or 1.25, chosen randomly each time. These points represent the locations of four rooms where the robot needs to position its arm’s end-effector to collect hints.
+Building upon this architecture, the project features upgrades in both environment simulation and task-motion planning. We have developed a scene in the Gazebo simulator, which includes a custom-made robot model with an arm attached to its base. The environment contains four hovering points with coordinates (-3,0), (3,0), (0,-3), (0,3) for the 'x' and 'y' axes. The 'z' coordinate can be either 0.75 or 1.25, chosen randomly each time. These points represent the locations of four rooms where the robot needs to position its arm’s end-effector to collect hints.
 
 ### Environment Details
 
@@ -89,7 +89,7 @@ The project architecture consists of the following main nodes:
    - Implements the 'oracle' and visualizes the positions of four hints. The oracle generates random hints and a trustable ID to produce a consistent and correct hypothesis. Hints are published on the `/oracle_hint` topic.
 
 2. **my_action.cpp**
-   - Implements an action client for the 'goto_waypoint' action in the PDDL domain file. It requests the robot to visit waypoints, adjust orientation, move its arm, and collect hints. Successful hint collection is confirmed by the service returning 'true'.
+   - Implements an action client for the `goto_waypoint` action in the PDDL domain file. It requests the robot to visit waypoints, adjust orientation, move its arm, and collect hints. Successful hint collection is confirmed by the service returning 'true'.
 
 3. **hint_collector.cpp**
    - Provides the `/request_hint_collector` service, which collects hints from the `/oracle_hint` topic. It checks the consistency of collected hints, loads them into the ARMOR ontology knowledge base, and verifies if the hypothesis is complete and correct.
@@ -115,4 +115,4 @@ The project architecture consists of the following main nodes:
 
 ## Documentation
 
-Code documentation is provided using the Doxygen tool. You can find the Doxygen documentation in the **main** branch.
+Code documentation is provided in the `docs` folder using the Doxygen tool.
