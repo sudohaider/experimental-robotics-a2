@@ -113,6 +113,6 @@ The project architecture consists of the following main nodes:
 8. **set_orientation.py**
    - Receives desired orientation coordinates from the `/request_set_orientation` service and computes the required angular velocity for the robot to achieve the desired orientation. Publishes this velocity to the `cmd_vel` topic.
 
-## Code Documentation
+## Documentation
 
 Code documentation is provided using the Doxygen tool. You can find the Doxygen documentation in the **main** branch.
