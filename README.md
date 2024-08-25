@@ -42,7 +42,7 @@ At the start of the simulation, we execute the ROSPlan planning loop services, w
    - **ARMOR**: [Installation Guide](https://github.com/EmaroLab/armor)
    - **ROSPlan**: [Installation Guide](https://github.com/KCL-Planning/ROSPlan)
 
-2. Clone the repository into your ROS workspace’s `src` directory.
+2. Clone the repository inside `erl2` folder in your ROS workspace’s `src` directory.
 
 3. Build the package:
   ```bash
@@ -54,6 +54,11 @@ At the start of the simulation, we execute the ROSPlan planning loop services, w
     export PYTHONPATH=$PYTHONPATH:/root/ros_ws/src/armor/armor_py_api/scripts/armor_api/
     ```
 5. Download the `cluedo_ontology.owl` file from this repository and place it in your `/root/Desktop/` directory.
+6. Go to the scripts directory and make `rosplan_start.sh` executable.
+    ```bash
+    cd src/erl2/scripts
+    chmod +x rosplan_start.sh
+    ```
 
 ## Running the Project Simulation
 
