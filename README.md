@@ -41,14 +41,12 @@ At the start of the simulation, we execute the ROSPlan planning loop services, w
 1. Ensure ROS, ARMOR, and ROSPlan are installed:
    - **ARMOR**: [Installation Guide](https://github.com/EmaroLab/armor)
    - **ROSPlan**: [Installation Guide](https://github.com/KCL-Planning/ROSPlan)
-
 2. Clone the repository inside `erl2` folder in your ROS workspace’s `src` directory.
-
 3. Build the package:
-  ```bash
+    ```bash
    catkin_make
    source devel/setup.bash
-  ```
+    ```
 4. To use the Python modules in the `armor_py_api` package, add the path to your `PYTHONPATH` environment variable:
     ```bash
     export PYTHONPATH=$PYTHONPATH:/root/ros_ws/src/armor/armor_py_api/scripts/armor_api/
