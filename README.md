@@ -105,7 +105,7 @@ The project architecture consists of the following main nodes:
    - Plans and executes the robot’s arm motion using the ROS MoveIt library. Provides a service for moving the robot arm’s end-effector to a desired point in the Gazebo environment.
 
 7. **hint_loader.py**
-   - Waits for requests from the `hintcollector` node to load hints into the ARMOR reasoner. It starts the reasoner, deduces hypotheses, and checks if they are 'COMPLETE' and 'CORRECT', then returns the appropriate response.
+   - Waits for requests from the `hint_collector` node to load hints into the ARMOR reasoner. It starts the reasoner, deduces hypotheses, and checks if they are 'COMPLETE' and 'CORRECT', then returns the appropriate response.
 
 8. **set_orientation.py**
    - Receives desired orientation coordinates from the `/request_set_orientation` service and computes the required angular velocity for the robot to achieve the desired orientation. Publishes this velocity to the `cmd_vel` topic.
