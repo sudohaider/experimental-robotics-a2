@@ -9,7 +9,7 @@
 
 ### Project Overview
 
-This project extends the work done in Assignment 1 of the Experimental Robotics course, which can be found [here](https://github.com/alihaidersays/experimental-robotics-a1). In the previous project, a ROS package was developed for a simulation of the Cluedo game, where a robot explored the environment to collect hints and deduced a hypothesis about who might be the killer.
+This project extends the work done in Assignment 1 of the Experimental Robotics course, which can be found [here](https://github.com/sudohaider/experimental-robotics-a1). In the previous project, a ROS package was developed for a simulation of the Cluedo game, where a robot explored the environment to collect hints and deduced a hypothesis about who might be the killer.
 
 Building upon this architecture, the project features upgrades in both environment simulation and task-motion planning. We have developed a scene in the Gazebo simulator, which includes a custom-made robot model with an arm attached to its base. The environment contains four hovering points with coordinates (-3,0), (3,0), (0,-3), (0,3) for the 'x' and 'y' axes. The 'z' coordinate can be either 0.75 or 1.25, chosen randomly each time. These points represent the locations of four rooms where the robot needs to position its arm’s end-effector to collect hints.
 
